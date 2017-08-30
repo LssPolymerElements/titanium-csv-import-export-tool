@@ -1,0 +1,24 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer2-ts/polymer2-ts.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="csv-file-export-button">
+
+    <template>
+        <style>
+            paper-button {
+                background-color: var(--app-primary-color);
+                color: white;
+            }
+
+            paper-button[disabled] {
+                background-color: #eaeaea;
+                color: grey;
+            }
+        </style>
+        <paper-button id="exportButton" on-tap="exportButtonTapped">[[buttonText]]</paper-button>
+    </template>
+
+    <script src="csv-file-export-button.js"></script>
+
+</dom-module>

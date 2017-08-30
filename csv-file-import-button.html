@@ -1,0 +1,115 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer2-ts/polymer2-ts.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="./my-icons.html">
+
+<dom-module id="csv-file-import-button">
+
+    <template>
+        <style>
+            .box {
+                max-width: 80%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                cursor: pointer;
+                overflow: hidden;
+                color: inherit;
+            }
+
+            .messages {
+                width: 100%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                color: inherit;
+            }
+
+            .error-message {
+                padding: 12px;
+                box-sizing: border-box;
+            }
+
+            .error-message li {
+                color: red;
+            }
+
+            .input {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .cloud {
+                height: 65px;
+                width: 100%;
+                color: var(--app-primary-color);
+            }
+
+            .drop-box {
+                @apply --layout;
+                width: 100%;
+                min-width: 272px;
+                max-width: 720px;
+                padding: 8px;
+                border: dashed;
+                border-radius: 4px;
+                border-width: 2px;
+                color: var(--secondary-text-color);
+                overflow: auto;
+                box-sizing: border-box;
+                display: block;
+            }
+
+            .drop-container {
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+                box-sizing: border-box;
+                cursor: pointer;
+            }
+
+            .background-drag-over {
+                background-color: darkgray;
+                opacity: 0.7;
+                color: var(--app-primary-color);
+            }
+
+            #tryAgain {
+                margin-top: 32px;
+                color: var(--primary-text-color);
+                @apply --layout-horizontal;
+                @apply --layout-end-justified;
+                @apply --layout-center;
+            }
+
+            .disabled {
+                opacity: 0.3;
+                color: var(--secondary-text-color);
+            }
+        </style>
+        <div id="dropBox" class="drop-box" on-drop="handleFileSelect" on-dragover="handleDragOver" on-dragleave="dragLeave" on-dragend="dragLeave"
+            on-mouseout="dragLeave">
+            <div class="drop-container" on-tap="openFileChooser" hidden$=[[error]]>
+                <div hidden$="[[done]]">
+                    <iron-icon id="cloudIcon" class="cloud" icon="my-icons:cloud-upload" hidden$="[[browserCanDragDrop()]]"></iron-icon>
+                    <div hidden$="[[uploading]]">
+                        <input type="file" id="fileInput" name="files[]" id="inputFile" class="input" on-change="handleFileSelect" />
+                        <label id="file" for="inputFile" class="box"><strong id="link-text">Choose a file</strong><span hidden$="[[browserCanDragDrop()]]"> or drag it here</span>.</label>
+                    </div>
+                </div>
+                <div id="uploadedFile" class="messages" hidden$="[[!done]]">File Uploaded</div>
+                <div class="messages" hidden$="[[!uploading]]">Uploading...</div>
+            </div>
+            <div class="messages error-message" hidden$="[[!error]]">The Following error has occured: <span id="errorText"></span></div>
+            <paper-button id="tryAgain" hidden$="[[!error]]" on-tap="clearFile">Try Again</paper-button>
+        </div>
+    </template>
+
+    <script src="csv-file-import-button.js"></script>
+    <script src="../../bower_components/papaparse/papaparse.js"></script>
+
+</dom-module>
