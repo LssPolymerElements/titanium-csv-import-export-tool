@@ -7,7 +7,7 @@ To install use: `bower install --save titanium-csv-import-export-tool`
 TODO: change the below after setting up appveyor
 -->
 
-[![Build status](https://ci.appveyor.com/api/projects/status/7cfist48amu66myp/branch/master?svg=true)](https://ci.appveyor.com/project/aarondrabeck/titanium-circle-letter-icon/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/60iil13yojc3ivd6/branch/master?svg=true)](https://ci.appveyor.com/project/gfportfolio/titanium-csv-import-export-tool/branch/master)
 
 [ LIVE DEMO AND API ](https://www.webcomponents.org/element/LssPolymerElements/titanium-circle-letter-icon)
 
